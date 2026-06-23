@@ -2681,6 +2681,7 @@ value of the \field{index} is to be interpreted as a value of type
 	\enumerator{Choice}
 	\enumerator{ConstructAt}
 	\enumerator{Initialize}
+	\enumerator{NewArray}
 
 	\setcounter{enumi}{1023}
 	\enumerator{Msvc}
@@ -2714,6 +2715,20 @@ of a \grammar{new-expression} with the global scope resolution operator (\code{:
 \ifcSortSection{Initialize}{TriadicOperator}
 
 C++ abstract machine operation.
+
+\ifcSortSection{NewArray}{TriadicOperator}
+Abstract machine operation corresponding to allocating appropriate storage for an array and initializing its elements
+if an initializer is present.
+
+When used as the value for the \field{assoc} field of a \sortref{Triad}{ExprSort} structure, that structure
+represents the semantic operation for an array \grammar{new-expression}, where
+\begin{itemize}
+	\item the first operand designates the array object type
+	\item the second operand designates the array bound
+	\item the third operand designates the initializer, or is null if no initializer is present
+\end{itemize}
+
+A null third operand designates absence of an initializer, as in \code{new T[n]}, and is distinct from an empty initializer list.
 
 \ifcSortSection{Msvc}{TriadicOperator}
 This is a marker, not an actual operator. Triadic operators with 
